@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Azure Paradise — Guest WayFinder</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <button id="menuBtn" class="menuBtn" aria-label="Open navigation">☰</button>
+  <div class="brand"><div class="logo">A</div><div><b>AZURE PARADISE</b><small>Guest Pathway WayFinder</small></div></div>
+  <div class="topRight"><span class="status"><i></i> WALKWAYS ONLY</span><button id="dashboardBtn">Dashboard</button></div>
+</header>
+
+<div id="scrim"></div>
+<div class="layout">
+<aside id="sidebar" class="sidebar">
+  <button id="closeSidebar" class="closeSide">×</button>
+  <div class="eyebrow">SAFE WALKING ROUTE</div>
+  <h1>Find your way</h1>
+  <p class="sub">Routes follow mapped room doors, corridors and marked pedestrian pathways only.</p>
+
+  <div id="currentPlace" class="currentPlace hidden">
+    <span class="currentIcon">⌖</span>
+    <div><small>YOU ARE HERE</small><b id="currentPlaceName">—</b></div>
+  </div>
+
+  <label>START</label>
+  <select id="from"></select>
+  <label>DESTINATION</label>
+  <select id="to"></select>
+  <button id="go">Calculate walking route <span>→</span></button>
+
+  <div id="result" class="result hidden">
+    <div class="resultHead"><b>Verified pathway route</b><span>✓</span></div>
+    <div class="stats"><strong id="dist">—</strong><em>•</em><strong id="time">—</strong></div>
+    <div id="routeDesc"></div>
+  </div>
+
+  <div class="sectionTitle">ROOMS & DESTINATIONS</div>
+  <div id="quick" class="quick"></div>
+
+  <div class="rules">
+    <b>Routing rule</b>
+    <span>✓ Doors / corridors</span><span>✓ Strolled pathways</span>
+    <span>✓ Pedestrian crossings</span><span>✕ Buildings / gardens / water</span>
+  </div>
+</aside>
+
+<main class="mapArea">
+  <div class="mapTools">
+    <span>AZURE PARADISE RESORT</span>
+    <div><button id="minus">−</button><button id="plus">+</button></div>
+  </div>
+  <div id="viewport">
+    <div id="stage">
+      <img src="assets/resort-map.png" alt="Azure Paradise Resort map">
+      <svg id="routes" viewBox="0 0 1376 768" preserveAspectRatio="none"></svg>
+      <div id="markers"></div>
+    </div>
+  </div>
+  <div class="note">Blue line = pedestrian pathway only • Route snaps to mapped walkway nodes</div>
+</main>
+</div>
+
+<!-- Admin dashboard drawer -->
+<div id="dashboard" class="dashboard">
+  <div class="dashHead"><div><small>ADMIN</small><h2>WayFinder Dashboard</h2></div><button id="closeDash">×</button></div>
+  <div class="dashBody">
+    <div class="dashCard">
+      <span class="cardIcon">⌁</span><div><b>Place QR Generator</b><small>Create a QR for any resort place.</small></div>
+      <label>SELECT PLACE</label>
+      <select id="qrPlace"></select>
+      <div class="urlBox"><span id="qrUrl">—</span><button id="copyUrl">Copy</button></div>
+      <div id="qrcode"></div>
+      <button id="downloadQr" class="primary">Download QR</button>
+      <p class="hint">When scanned, the guest page opens with that place automatically set as “You are here”.</p>
+    </div>
+    <div class="dashCard">
+      <span class="cardIcon">◉</span><div><b>QR examples</b><small>Useful places to put printed codes.</small></div>
+      <div class="examples">
+        <div>Reception <span>Lobby entrance</span></div>
+        <div>Main Restaurant <span>Restaurant entrance</span></div>
+        <div>Infinity Pool <span>Pool deck</span></div>
+        <div>Spa & Wellness <span>Spa entrance</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QR library is loaded only for the dashboard. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
